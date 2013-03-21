@@ -18,7 +18,7 @@
 #
 
 case node[:platform]
-when "centos", "redhat", "amazon"
+when "centos", "redhat", "oracle", "amazon"
   service "syslog" do
     action [:stop, :disable ]
   end

@@ -26,7 +26,7 @@ include_recipe "php::module_gd"
 include_recipe "php::module_pgsql"
 
 case node[:platform]
-  when "centos", "redhat", "fedora", "suse"
+  when "centos", "redhat", "oracle", "fedora", "suse"
     #placeholder modify when available
   when "debian" "ubuntu"
     package "php5-cgi" do

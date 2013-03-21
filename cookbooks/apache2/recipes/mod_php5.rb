@@ -29,7 +29,7 @@ when "arch"
     notifies :run, resources(:execute => "generate-module-list"), :immediately
   end
 
-when "redhat", "centos", "scientific"
+when "redhat", "oracle", "centos", "scientific"
   package "php package" do
     if node.platform_version.to_f < 6.0
       package_name "php53"
@@ -72,7 +72,7 @@ end
 
 apache_module "php5" do
   case node['platform']
-  when "redhat","centos","scientific","fedora"
+  when "redhat","oracle","centos","scientific","fedora"
     filename "libphp5.so"
   end
 end

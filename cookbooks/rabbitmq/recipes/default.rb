@@ -48,7 +48,7 @@ when "debian", "ubuntu"
   end
   package "rabbitmq-server"
 
-when "redhat", "centos", "scientific","amazon"
+when "redhat", "oracle", "centos", "scientific","amazon"
   if node[:platform_version].to_i <= 5
     service "rabbitmq-server" do
       start_command "setsid /etc/init.d/rabbitmq-server start"
@@ -61,11 +61,12 @@ when "redhat", "centos", "scientific","amazon"
 
   package "rabbitmq-server" do
     action :upgrade
+    #notifies :restart
   end
 
-  service "rabbitmq-server" do
-    action :stop
-  end
+  #service "rabbitmq-server" do
+  #  action :stop
+  #end
 
   template "/var/lib/rabbitmq/.erlang.cookie" do
     source "doterlang.cookie.erb"
@@ -104,14 +105,15 @@ when "redhat", "centos", "scientific","amazon"
       mode 0400
     end
 
-    execute "start rabbitmq-server" do
-      action :nothing
-    end
+    #execute "start rabbitmq-server" do
+    #  action :nothing
+    #end
 
     template "/etc/init/rabbitmq-server.conf" do
       mode "0644"
       source "rabbitmq-server.conf.upstart.erb"
-      notifies :run, resources(:execute => "start rabbitmq-server")
+      #notifies :run, resources(:execute => "start rabbitmq-server")
+      notifies :restart
     end
   else
     service "rabbitmq-server" do
@@ -125,10 +127,10 @@ when "debian", "ubuntu"
   service "rabbitmq-server" do
     action [:enable, :start]
   end
-when "redhat", "centos", "scientific","amazon"
+when "redhat", "oracle", "centos", "scientific","amazon"
   if node[:platform_version].to_i <= 5
     service "rabbitmq-server" do
-      action [ :enable, :start ]
+      action [ :enable, :start, :restart ]
     end
   end
 end

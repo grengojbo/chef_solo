@@ -19,7 +19,7 @@
 default["java"]["install_flavor"] = "openjdk"
 
 case platform
-when "centos","redhat","fedora"
+when "centos","redhat","oracle","fedora"
   set["java"]["java_home"] = "/usr/lib/jvm/java"
 else
 	set["java"]["java_home"] = "/usr/lib/jvm/default-java"

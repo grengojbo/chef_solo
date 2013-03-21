@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-case node[:platform] when "redhat","centos","amazon"
+case node[:platform] when "redhat","oracle","centos","amazon"
   if node[:platform_version].to_f >= 5 and node[:repo][:epel][:enabled]
 
     execute "yum -q makecache" do

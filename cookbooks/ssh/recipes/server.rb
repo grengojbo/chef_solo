@@ -34,7 +34,7 @@ template "/etc/ssh/sshd_config" do
   owner "root"
   group "root"
   case node[:platform]
-  when "centos","redhat","fedora"
+  when "centos","redhat","oracle","fedora"
     notifies :restart, resources(:service => "sshd")
   when "debian","ubuntu"
     notifies :restart, resources(:service => "ssh")

@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-case node[:platform] when "redhat","centos"
+case node[:platform] when "redhat","oracle","centos"
   if node[:platform_version].to_i <= 5 and node[:repo][:epel][:enabled]
     execute "rpm --import /etc/pki/rpm-gpg/#{node[:repo][:epel][:key]}" do
       action :nothing

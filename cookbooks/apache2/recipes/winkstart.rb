@@ -19,7 +19,7 @@
 
 package "apache2" do
   case node[:platform]
-  when "centos","redhat","fedora","suse","amazon"
+  when "centos","redhat","oracle","fedora","suse","amazon"
     package_name "httpd"
   when "debian","ubuntu"
     package_name "apache2"
@@ -31,7 +31,7 @@ end
 
 service "apache2" do
   case node[:platform]
-  when "centos","redhat","fedora","suse","amazon"
+  when "centos","redhat","oracle","fedora","suse","amazon"
     service_name "httpd"
     # If restarted/reloaded too quickly httpd has a habit of failing.
     # This may happen with multiple recipes notifying apache to restart - like
@@ -58,7 +58,7 @@ service "apache2" do
   action :enable
 end
 
-if platform?("centos", "redhat", "fedora", "suse", "arch", "amazon")
+if platform?("centos", "redhat", "oracle", "fedora", "suse", "arch", "amazon")
   directory node[:apache][:log_dir] do
     mode 0755
     action :create
@@ -144,7 +144,7 @@ end
 
 template "apache2.conf" do
   case node[:platform]
-  when "centos","redhat","fedora","arch","amazon"
+  when "centos","redhat","oracle","fedora","arch","amazon"
     path "#{node[:apache][:dir]}/conf/httpd.conf"
   when "debian","ubuntu"
     path "#{node[:apache][:dir]}/apache2.conf"
@@ -207,9 +207,9 @@ include_recipe "apache2::mod_env"
 include_recipe "apache2::mod_mime"
 include_recipe "apache2::mod_negotiation"
 include_recipe "apache2::mod_setenvif"
-include_recipe "apache2::mod_log_config" if platform?("centos", "redhat", "fedora", "suse", "arch", "amazon")
+include_recipe "apache2::mod_log_config" if platform?("centos", "redhat", "oracle", "fedora", "suse", "arch", "amazon")
 
-apache_site "winkstart" if platform?("centos", "redhat", "fedora", "amazon")
+apache_site "winkstart" if platform?("centos", "redhat", "oracle", "fedora", "amazon")
 
 file "#{node[:apache][:dir]}/sites-enabled/000-default" do
   action :delete

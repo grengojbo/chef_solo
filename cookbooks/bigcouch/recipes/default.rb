@@ -42,7 +42,7 @@ when "ubuntu"
   package = "deb"
   filename = "bigcouch_#{node[:bigcouch][:version]}_#{build}.#{package}"
   
-when "centos","redhat","amazon"
+when "centos","redhat","oracle","amazon"
   
   %w{openssl openssl-devel}.each do |pkg|
     package pkg
@@ -57,7 +57,7 @@ when "ubuntu"
     not_if "/usr/bin/test -d /opt/bigcouch"
   end
 
-when "centos","redhat","amazon"
+when "centos","redhat","oracle","amazon"
   package "bigcouch" do
     action :upgrade
     options "--enablerepo=epel"

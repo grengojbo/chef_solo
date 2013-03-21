@@ -19,7 +19,7 @@
 
 package "apache2" do
   case node[:platform]
-  when "redhat","centos","scientific","fedora","suse","amazon"
+  when "redhat","oracle","centos","scientific","fedora","suse","amazon"
     package_name "httpd"
   when "debian","ubuntu"
     package_name "apache2"
@@ -31,7 +31,7 @@ end
 
 service "apache2" do
   case node[:platform]
-  when "redhat","centos","scientific","fedora","suse","amazon"
+  when "redhat","oracle","centos","scientific","fedora","suse","amazon"
     service_name "httpd"
     # If restarted/reloaded too quickly httpd has a habit of failing.
     # This may happen with multiple recipes notifying apache to restart - like
@@ -59,7 +59,7 @@ service "apache2" do
   action :enable
 end
 
-if platform?("redhat", "centos", "scientific", "fedora", "arch", "suse" )
+if platform?("redhat", "oracle", "centos", "scientific", "fedora", "arch", "suse" )
   directory node[:apache][:log_dir] do
     mode 0755
     action :create
@@ -140,7 +140,7 @@ end
 
 template "apache2.conf" do
   case node[:platform]
-  when "redhat", "centos", "scientific", "fedora", "arch","amazon"
+  when "redhat", "oracle", "centos", "scientific", "fedora", "arch","amazon"
     path "#{node[:apache][:dir]}/conf/httpd.conf"
   when "debian","ubuntu"
     path "#{node[:apache][:dir]}/apache2.conf"
@@ -203,9 +203,9 @@ include_recipe "apache2::mod_env"
 include_recipe "apache2::mod_mime"
 include_recipe "apache2::mod_negotiation"
 include_recipe "apache2::mod_setenvif"
-include_recipe "apache2::mod_log_config" if platform?("redhat", "centos", "scientific", "fedora", "suse", "arch", "amazon")
+include_recipe "apache2::mod_log_config" if platform?("redhat", "oracle", "centos", "scientific", "fedora", "suse", "arch", "amazon")
 
-apache_site "default" if platform?("redhat", "centos", "scientific", "fedora", "amazon")
+apache_site "default" if platform?("redhat", "oracle", "centos", "scientific", "fedora", "amazon")
 
 service "apache2" do
   action :start

@@ -18,7 +18,7 @@
 #
 
 case node[:platform]
-when "centos", "redhat", "fedora", "amazon"
+when "centos", "redhat", "oracle", "fedora", "amazon"
   if node[:platform_version].to_i <= 5
     packages = %w[
       git screen dstat gdb strace ngrep vim-enhanced tcpdump vixie-cron dialog nc

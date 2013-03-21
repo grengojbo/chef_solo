@@ -23,7 +23,7 @@ case node[:platform]
 when "debian", "ubuntu"
   package "libncurses5-dev"
   package "libssl-dev"
-when "centos", "redhat", "fedora"
+when "centos", "redhat", "oracle", "fedora"
   package "openssl-devel"
   package "ncurses-devel"
 end

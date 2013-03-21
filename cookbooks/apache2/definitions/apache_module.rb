@@ -26,7 +26,7 @@ define :apache_module, :enable => true, :conf => false do
     apache_conf params[:name]
   end
 
-  if platform?("redhat", "centos", "scientific", "fedora", "arch", "suse" )
+  if platform?("redhat", "oracle", "centos", "scientific", "fedora", "arch", "suse" )
     file "#{node['apache']['dir']}/mods-available/#{params[:name]}.load" do
       content "LoadModule #{params[:name]}_module #{node['apache']['lib_dir']}/modules/#{params[:filename]}\n"
       mode 0644

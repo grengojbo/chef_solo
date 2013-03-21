@@ -10,7 +10,7 @@ include_recipe "bluepill"
 opensips = data_bag('accounts')
 
 packages = value_for_platform(
-	[ "centos", "redhat", "fedora", "suse", "amazon" ] => {
+	[ "centos", "redhat", "oracle", "fedora", "suse", "amazon" ] => {
 	  "default" => %w(curl unzip mysql-server ncurses-devel ncurses-devel e2fsprogs-libs glibc libgcrypt openssl openssl-devel zlib zlib-devel libgcc libogg libogg-devel libidn libstdc++ libjpeg postgresql-libs gnutls gnutls-devel expat-devel libtiff libtiff-devel libtheora libtheora-devel alsa-lib alsa-lib-devel unixODBC unixODBC-devel libvorbis libvorbis-devel flite)
 	},
 	[ "ubuntu", "debian"] => {
@@ -57,7 +57,7 @@ when "debian", "ubuntu"
     mode 0755
   end
 
-when "centos", "redhat", "fedora", "amazon"
+when "centos", "redhat", "oracle", "fedora", "amazon"
   %w{
     freeswitch-application-abstraction
     freeswitch-application-avmd

@@ -19,7 +19,7 @@
 #
 
 case node[:platform]
-when "centos", "redhat", "fedora", "amazon"
+when "centos", "redhat", "oracle", "fedora", "amazon"
   packages = %w[ opensips ]
   packages.each do |pkg|
     package pkg do

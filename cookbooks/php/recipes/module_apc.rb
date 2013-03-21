@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-pack = value_for_platform([ "centos", "redhat", "fedora", "suse" ] => {"default" => "php-pecl-apc"}, "default" => "php5-apc")
+pack = value_for_platform([ "centos", "redhat", "oracle", "fedora", "suse" ] => {"default" => "php-pecl-apc"}, "default" => "php5-apc")
 
 if pack
   package pack do

@@ -22,7 +22,7 @@ nodes = search(:node, "cluster:#{node[:cluster]} AND roles:whistle-fs")
 devnodes = search(:node, "roles:development AND roles:whistle-fs")
 
 case node[:platform]
-when "centos", "redhat", "fedora"
+when "centos", "redhat", "oracle", "fedora"
   packages = %w[ opensips ]
 
   packages.each do |pkg|

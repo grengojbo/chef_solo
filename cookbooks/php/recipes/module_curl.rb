@@ -19,7 +19,7 @@
 #
 
 case node[:platform]
-  when "centos", "redhat", "fedora", "suse"
+  when "centos", "redhat", "oracle", "fedora", "suse"
     #centos php compiled with curl
   when "debian" "ubuntu"
     package pack do

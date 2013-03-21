@@ -18,7 +18,7 @@
 #
 
 packages = value_for_platform(
-	[ "centos", "redhat", "fedora", "suse" ] => {
+	[ "centos", "redhat", "oracle", "fedora", "suse" ] => {
 	  "default" => %w(unzip mysql-server curl-devel ncurses-devel ncurses-devel e2fsprogs-libs glibc libgcrypt openssl openssl-devel zlib zlib-devel libgcc libogg libogg-devel libidn libstdc++ libjpeg postgresql-libs gnutls gnutls-devel expat-devel libtiff libtiff-devel libtheora libtheora-devel alsa-lib alsa-lib-devel unixODBC unixODBC-devel libvorbis libvorbis-devel)
 	},
 	[ "ubuntu", "debian"] => {
@@ -33,7 +33,7 @@ packages.each do |pkg|
 	end
 end
 
-if platform?("centos", "redhat", "fedora", "suse")
+if platform?("centos", "redhat", "oracle", "fedora", "suse")
   script "install_freeswitch" do
 	not_if { ::FileTest.exists?("/opt/freeswitch/bin/fs_cli") }
 	interpreter "bash"
