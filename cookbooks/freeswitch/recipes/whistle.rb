@@ -110,11 +110,16 @@ when "centos", "redhat", "fedora", "amazon"
     freeswitch-freetdm
     freeswitch
     freeswitch-lang-en
+    freeswitch-lang-ru
     freeswitch-xml-curl
     freeswitch-custom-sounds
     freeswitch-custom-music
     freeswitch-sounds-en-us-callie-8000
     freeswitch-sounds-music-8000
+    freeswitch-lua
+    freeswitch-event-cdr-mongodb
+    freeswitch-application-nibblebill
+    freeswitch-application-redis
     }.each do |pkg|
       yum_package "#{pkg}" do
         action :upgrade
